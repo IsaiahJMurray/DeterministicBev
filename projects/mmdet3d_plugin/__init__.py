@@ -8,4 +8,12 @@ from .datasets.pipelines import (
 from .models.utils import *
 from .models.opt.adamw import AdamW2
 from .bevformer import *
-from .dd3d import *
+try:
+    from .dd3d import *
+except ImportError as _e:
+    # Guarded by patches/bevformer/12_plugin_init_guard.sh
+    # Reason: dd3d/ subpackage may pull Detectron2 (un-installed in v5).
+    # Normally patch 09 empties dd3d/__init__.py (no-op), this guards against
+    # patch-application atomicity / future changes adding dd3d imports.
+    import warnings
+    warnings.warn(f'dd3d subpackage unavailable: {_e}')

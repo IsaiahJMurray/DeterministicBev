@@ -226,9 +226,15 @@ def main():
         model.PALETTE = dataset.PALETTE
 
     if not distributed:
-        assert False
-        # model = MMDataParallel(model, device_ids=[0])
-        # outputs = single_gpu_test(model, data_loader, args.show, args.show_dir)
+        # Strategy C1 patch 17: single-GPU support (was: assert False)
+        # See ~/work/bevformer/docs/STRATEGY_C1_ANALYSIS.md section 5.
+        # Uses pre-existing `from mmdet3d.apis import single_gpu_test` at top.
+        model = MMDataParallel(model, device_ids=[0])
+        outputs = single_gpu_test(
+            model, data_loader,
+            getattr(args, 'show', False),
+            getattr(args, 'show_dir', None),
+        )
     else:
         model = MMDistributedDataParallel(
             model.cuda(),

@@ -120,6 +120,7 @@ for i, token in enumerate(tokens):
     with torch.no_grad():
         detections = model([image])[0]
 
+    # package into correct format for benchmarking
     t, q = ego_pose(nusc, token)
     results[token] = []
     for box, label, score in zip(detections["boxes"].tolist(), detections["labels"].tolist(), detections["scores"].tolist()):

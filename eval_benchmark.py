@@ -116,3 +116,7 @@ if __name__ == "__main__":
     path = "outputs/ground_truth/results.json"
     save_results(results, path)
     evaluate(nusc, "ground_truth", path)
+
+    # ========== CAM-B: DETECTOR ON THE BEV IMAGE (null baseline) ==========
+    # results come from running deterministic_bev_cam.py
+    evaluate(nusc, "cam_bev_detect", "outputs/cam_bev_detect/results.json")

@@ -170,6 +170,20 @@ The runtimes are not directly comparable either. Our methods ran on a laptop CPU
 
 Finally, all three deterministic methods rely on a generic detector. Faster R-CNN was trained on everyday photos (COCO), not driving data, and only covers 6 of the nuScenes classes. We decided to use this single model for controlled comparison reasons. Our methods also treat each sample on its own and do not track objects from frame to frame, which could help with hidden objects and with estimating speed.
 
+## 7. Challenges
+
+ - A large issue was the access to and size of neural networks (BEVFormer and BEVDepth). Our computers didn't have significant open storage for the models & entire nuScenes dataset, so we had to be mindful about quantities of training data downloaded & specific model we chose.
+ - GPU vs. CPU compute was also a friction point in collaboration, as we had different OSs, one of us was dual booting linux, and the other used parallels. Unfortunately this meant that the parallels instance couldn't run models on the GPU as required for BEVFormer and BEVDepth, so we had to be mindful about whos computer was used for benchmarking.
+ - Reproducibility is a huge pain. Because of the way we selectively downloaded a subset of the nuScenes dataset, and pre-compressed BEVFormer models (not to mention this repo existing as a fork of tiny BEV), the setup was highly system and path dependent, requiring extensive by-instance retrofitting to get every component of the repository working together without conflicts.
+
+### 7.1 Improvements
+ - In the future, we would prepare for this project by securing peripheral storage dedicated for the models & data used.
+ - We would standardize our compute, and prevent the issues used with cross-platform runtimes.
+ - Most importantly, developing the project OUTSIDE of the previous fork, and having a more rigid and reproducible environment setup would be unbelievably helpful if revisiting this.
+
+### 7.2 Takeaways
+In contrast to the localization lab, where our main qualms came from coordinate frame inconsistencies, this project taught the importance of environment discipline, system scrutiny especially when using GPUs, and better selection or auditing of a repo prior to forking.
+
 ## Contributions
 
 The work was split equally between the two authors of this work. AI is used partially only for the purpose of formatting on the program, documentations, research of models and datasets. 

@@ -184,6 +184,6 @@ Finally, all three deterministic methods rely on a generic detector. Faster R-CN
 ### 7.2 Takeaways
 In contrast to the localization lab, where our main qualms came from coordinate frame inconsistencies, this project taught the importance of environment discipline, system scrutiny especially when using GPUs, and better selection or auditing of a repo prior to forking.
 
-## Contributions
+## Contributions & AI Usage
 
-The work was split equally between the two authors of this work. AI is used partially only for the purpose of formatting on the program, documentations, research of models and datasets. 
+The work was split equally between the two authors of this work. AI is used partially only for the purpose of formatting on the program, documentations, research of models and datasets. Specifically, we used generative AI to assist us in creating programs for creating the figures shown in the README, bar graphs, and table formats in the evaluation scripts. However, for the rest of our work, although AI was used as an effective source for learning and detailed explanation, the lines and work were ultimately produced by us for the most part.
